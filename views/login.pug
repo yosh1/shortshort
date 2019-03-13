@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 ログイン
+  form(action='/login' method='post')
+    input(type="hidden" name="_csrf" value!=csrfToken)
+    span username:
+    input(type='text' name='username')
+    br
+    span password: 
+    input(type='password' name='password')
+    br
+    button(type='submit') 送信

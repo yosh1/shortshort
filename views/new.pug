@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+html(lang="ja")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title 新規作成
+    link(rel="stylesheet", href="/stylesheets/new.css")
+  body
+
+block content
+  h1 新規作成
+  article
+    div.forms
+      form(action='/novels/new' method='post')
+        input(type="hidden" name="_csrf" value!=csrfToken)
+        div.title
+          label(for='title') title:
+          input(type='text' name='title')
+        div.genre
+          select(name="genre")
+            option(value=0) 恋愛
+            option(value=1) ホラー
+            option(value=2) ミステリー
+            option(value=3) サスペンス
+            option(value=4) コメディ
+            option(value=5) SF
+            option(value=6) その他 
+        div.content  
+          p 100文字以上3000文字以内
+          label(for='content')
+          textarea(name='content')
+        div.button
+          button(type='submit') 送信

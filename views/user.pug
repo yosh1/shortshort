@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="/stylesheets/user.css")
+  h1 #{pageuser.username}
+  h2 一言
+  if pageuser.comment
+    p #{pageuser.comment}
+  else
+    p 一言コメントがありません
+  p #{pageuser.createdAt}から使用中
+  p follow: 
+    a(href=`/users/${pageuser.userId}/follows`) #{follows}人
+    if (!isMe && user)
+      if isFollowed
+        p フォローされています
+      else
+        p フォローされていません
+  p follower:
+    a(href=`/users/${pageuser.userId}/followers`)#followers #{followers}人  
+  if user
+    if !(pageuser.userId === user.userId)
+      button(
+        id=idName
+        data-follow-id=user.userId,
+        data-followed-id=pageuser.userId,
+        data-followers=followers,
+        data-id-name=idName
+      ) #{text}
+  p
+    a(href=`users/${pageuser.userId}/novels`) 作品一覧へ>>

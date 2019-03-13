@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  if user
+    h1 ようこそ、#{user.username} さん！（パスワードは #{user.password}）
+    form(action='/logout' method='post')
+      button(type='submit') ログアウト
+    br
+    a(href="/novels/new") 小説作成
+  else
+    h1 ログインまたは新規登録してください
+    a(href="/register") 新規登録
+    br
+    a(href="/login") ログイン

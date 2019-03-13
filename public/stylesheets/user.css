@@ -1,0 +1,10 @@
+#friend-create-button {
+  background-color: white;
+}
+#friend-delete-button {
+  background-color: red;
+}
+button {
+  outline: none;
+  cursor: pointer;
+}

@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href='/stylesheets/novel.css')
+  h1 #{novel.title}
+  h3 作成者： 
+    a(href=`/users/${novel.user.userId}`) #{novel.user.username}
+  - var genres = ['恋愛', 'ホラー', 'ミステリー', 'サスペンス', 'コメディ', 'SF', 'その他']
+  p ジャンル： #{genres[novel.genre]}
+  p #{novel.content}
+  p 更新日時 #{novel.updatedAt}
+  if isMine
+    div.good Good
+    span #{goodCount}
+    if !user
+      p
+        a(href="/") ログイン
+        span してください！
+    h2 Comments
+    each eachComment in comments
+      div.comment
+        a(href=`users/${eachComment.user.userId}`) #{eachComment.user.username}
+        p #{eachComment.content}
+        p #{eachComment.updatedAt}
+  else 
+    if (className === "good-create-button")
+      p good-create-buttonです
+    else if (className === "good-delete-button")
+      p good-delete-buttonです
+    button(
+    class=className
+    data-user-id=user.userId
+    data-novel-id=novel.novelId
+    data-good-count=goodCount
+    data-class-name=className
+    ) Good
+    span #{goodCount}
+    h2 Comments
+    if !comment
+      form(action=`/novels/${novel.novelId}/users/${user.userId}/comments` method='POST')
+        input(type="hidden" name="_csrf" value!=csrfToken)
+        input(type="text" name="content")
+        button(type='submit') 送信
+    each eachComment in comments
+        div.comment
+          p
+           a(href=`/users/${eachComment.user.userId}`) #{eachComment.user.username}
+          p.content #{eachComment.content}
+          p 投稿日: #{eachComment.updatedAt}
+          if comment
+            if comment.createdBy === eachComment.user.userId
+              form(action=`/novels/${novel.novelId}/users/${comment.createdBy}/comments/delete` method="post")
+                input(type='hidden' name='_csrf' value!=csrfToken)
+                button(type='submit') 消去

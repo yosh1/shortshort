@@ -1,0 +1,16 @@
+h1 {
+  color: red;
+  text-align: center;
+}
+article {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title, .genre, .content, .button {
+  margin-top: 20px;
+}
+input, select, textarea {
+  width: 300px;
+}

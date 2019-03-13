@@ -1,0 +1,28 @@
+button {
+  outline: none;
+  cursor: pointer;
+}
+.good-create-button {
+  background-color: white;
+}
+.good-delete-button {
+  background-color: red;
+  border-radius: 3px;
+}
+.good {
+  width: 55px;
+  height: 28px;
+  line-height: 28px;
+  border: solid 1px black;
+  background-color: grey;
+  text-align: center;
+}
+.comment {
+  width: 100%;
+  border-bottom: solid 2px black;
+  padding-top: 10px;
+  padding-bottom: 10px
+}
+.content {
+  color: red;
+}
